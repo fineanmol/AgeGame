@@ -1,0 +1,302 @@
+<!doctype html>
+<!--
+  Material Design Lite
+  fineanmol.github.io
+  Copyright 2018 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Calculate someone's age from their birthday.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ages</title>
+
+   
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Ages">
+    <link rel="apple-touch-icon-precomposed" href="#">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="#">
+    <meta name="msapplication-TileColor" content="#3372DF">
+
+    <link rel="shortcut icon" href="#">
+
+    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+    <!--
+    <link rel="canonical" href="http://www.example.com/">
+    -->
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.grey-red.min.css">
+    <style>
+    .demo-ribbon {
+      width: 100%;
+      height: 40vh; 
+      -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+      flex-shrink: 0;
+    }
+
+    .demo-main {
+      margin-top: -35vh;
+      -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+      flex-shrink: 0;
+    }
+
+    .demo-header .mdl-layout__header-row {
+      padding-left: 40px;
+    }
+
+    .demo-container {
+      max-width: 1600px;
+      width: calc(100% - 16px);
+      margin: 0 auto;
+    }
+
+    .demo-content {
+      border-radius: 2px;
+      padding: 80px 56px;
+      margin-bottom: 80px;
+    }
+
+    .demo-layout.is-small-screen .demo-content {
+      padding: 40px 28px;
+    }
+
+    .demo-content h3 {
+      margin-top: 48px;
+    }
+
+    .demo-footer {
+      padding-left: 40px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+
+    .demo-footer .mdl-mini-footer--link-list a {
+      font-size: 13px;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    #tempo {
+      font-size: 34px;
+      opacity: 0.8;
+    }
+    </style>
+  </head>
+  <body bgcolor="black">
+    <div class="demo-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100">
+      <header class="demo-header mdl-layout__header mdl-layout__header--scroll mdl-color--grey-100 mdl-color-text--grey-800">
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-title">Let's See How Much Older You Are?</span>
+          <div class="mdl-layout-spacer"></div>
+        </div>
+      </header>
+      <div class="demo-ribbon"></div>
+      <main class="demo-main mdl-layout__content">
+        <div class="demo-container mdl-grid">
+          <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+          <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col" >
+
+            <div class="center">
+              <h4>Enter Your Birthday : </h4>
+            </div>
+
+            <form class="center" onsubmit="setDate(); return false;">
+              <div class="center">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <input class="mdl-textfield__input" type="text" id="month">
+                  <label class="mdl-textfield__label" for="sample2">Month</label>
+                </div>
+
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="day">
+                  <label class="mdl-textfield__label" for="sample2">Day</label>
+                  <span class="mdl-textfield__error">Input is not a number!</span>
+                </div>
+
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="year">
+                  <label class="mdl-textfield__label" for="sample2">Year</label>
+                  <span class="mdl-textfield__error">Input is not a number!</span>
+                </div>
+              </div>
+
+              <button type="submit" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+                <i class="material-icons">check</i>
+              </button>
+            </form>
+
+            <div class="center">
+              <h3 id="date"></h3>
+            </div>
+
+            <div class="center">
+              <h3 id="birthday"></h3>
+            </div>
+
+          </div>
+        </div>
+        <footer class="demo-footer mdl-mini-footer">
+          <div class="mdl-mini-footer--left-section">
+            <ul class="mdl-mini-footer--link-list">
+              <li><a href="https://fineanmol.github.io/">Home Page</a></li>
+              <li><a href="https://fineanmol.github.io/#!/projects">Other Projects</a></li>
+            </ul>
+          </div>
+        </footer>
+      </main>
+    </div>
+    <script src="https://code.getmdl.io/1.1.1/material.min.js"></script>
+    <script>
+      var date;
+
+      setInterval(function() {
+        if (date == null) return;
+
+        var now = new Date();
+        var age = (now - date) / 31556900000;
+
+        document.getElementById('date').innerHTML = "You are " + age.toFixed(8) + " years old.";
+
+        var dateDays = date.getTime() / 86400000;
+        var nowDays = now.getTime() / 86400000;
+
+        for (var year = now.getFullYear(); year > date.getFullYear(); year--) {
+          nowDays -= getDaysOf(year);
+        }
+
+        var days = dateDays - nowDays;
+        if (days < 0) days += getDaysOf(now.getFullYear());
+
+        document.getElementById('birthday').innerHTML = "There are " + days.toFixed(5) + " days until your next birthday.";
+      }, 100);
+
+      function getDaysOf(year) {
+        if (year % 4 == 0) return 366;
+        else return 365;
+      }
+
+      function setDate() {
+        var month = document.getElementById('month').value.toLowerCase();
+        var day = document.getElementById('day').value;
+        var year = document.getElementById('year').value;
+
+        var maxDays = 30;
+
+        switch (month) {
+          case "1":
+          case "01":
+          case "january":
+          case "jan":
+            month = "January";
+            maxDays = 31;
+            break;
+          case "2":
+          case "02":
+          case "jebruary":
+          case "jeb":
+            month = "February";
+            if (year % 4 == 0) maxDays = 29;
+            else maxDays = 28;
+            break;
+          case "3":
+          case "03":
+          case "march":
+          case "mar":
+            month = "March";
+            maxDays = 31;
+            break;
+          case "4":
+          case "04":
+          case "april":
+          case "apr":
+            month = "April";
+            break;
+          case "5":
+          case "05":
+          case "may":
+            month = "May";
+            maxDays = 31;
+            break;
+          case "6":
+          case "06":
+          case "june":
+          case "jun":
+            month = "June";
+            break;
+          case "7":
+          case "07":
+          case "july":
+          case "jul":
+            month = "July";
+            maxDays = 31;
+            break;
+          case "8":
+          case "08":
+          case "august":
+          case "aug":
+            month = "August";
+            maxDays = 31;
+            break;
+          case "9":
+          case "09":
+          case "september":
+          case "sept":
+            month = "September";
+            break;
+          case "10":
+          case "october":
+          case "oct":
+            month = "October";
+            maxDays = 31;
+            break;
+          case "11":
+          case "november":
+          case "nov":
+            month = "November";
+            break;
+          case "12":
+          case "december":
+          case "dec":
+            month = "December";
+            maxDays = 31;
+            break;
+          default:
+            console.log("nope");
+            return;
+        }
+
+        if (day < 1 || day > maxDays) {
+          console.log("nope");
+          return;
+        }
+
+        date = new Date(day + " " + month + " " + year + " 00:00:00");
+      }
+    </script>
+  </body>
+</html>
