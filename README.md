@@ -1,1 +1,2 @@
 
+'How old am I' calculator helps you to find days, months, years that have passed since your time of birth to the present date. In other words, Age calculator online helps you to determine how much time you have spent in our mother earth from birth. It is not easy to find your age in minutes and hours manually. Make use of this free Online Age Game to calculate your Age combination time (in Years(s)). You can use this calculator to keep track of the days left for the next birthday, anniversary or any special occasions.
